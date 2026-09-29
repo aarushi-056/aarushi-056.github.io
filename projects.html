@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Aarushi Basu — Projects</title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            font-family: Georgia, serif;
+            color: #40382f;
+        }
+
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #f5f0d8;
+        }
+
+
+        /* =====================================================
+           CAMPANA
+        ===================================================== */
+
+        @font-face {
+
+            font-family: "Campana";
+
+            src:
+                url("Campana.otf")
+                format("opentype");
+
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+
+        /* =====================================================
+           MAIN PAGE
+        ===================================================== */
+
+        .page {
+
+            position: relative;
+
+            min-height: 100vh;
+
+            width: 100%;
+
+            padding:
+                70px 100px 100px 130px;
+        }
+
+
+        /* =====================================================
+           SPIRAL BACKGROUND
+        ===================================================== */
+
+        .spiral-background {
+
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            z-index: -2;
+
+            pointer-events: none;
+
+            background-image:
+                url("./spiral.png");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            opacity: 0.72;
+        }
+
+
+        .spiral-background::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                rgba(
+                    250,
+                    248,
+                    222,
+                    0.18
+                );
+        }
+
+
+        /* =====================================================
+           SIDE MENU
+        ===================================================== */
+
+        .side-menu {
+
+            position: fixed;
+
+            left: 28px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            z-index: 200;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 32px;
+        }
+
+
+        .menu-link {
+
+            border: none;
+
+            background: transparent;
+
+            color: #40382f;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 18px;
+
+            font-style: italic;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            padding: 0;
+
+            transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .menu-link:hover {
+
+            color: #a66c55;
+
+            transform:
+                translateX(5px);
+        }
+
+
+        /* =====================================================
+           PAGE TITLE
+        ===================================================== */
+
+        .page-title {
+
+            text-align: center;
+
+            margin-bottom: 65px;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        .page-title h1 {
+
+            font-family:
+                "Campana",
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(
+                    55px,
+                    8vw,
+                    105px
+                );
+
+            font-weight: normal;
+
+            color: #a66c55;
+
+            line-height: 0.95;
+        }
+
+
+        .page-title p {
+
+            margin-top: 12px;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(
+                    18px,
+                    2vw,
+                    25px
+                );
+
+            font-style: italic;
+
+            color: #40382f;
+        }
+
+
+        /* =====================================================
+           PROJECT GRID
+        ===================================================== */
+
+        .projects {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: 100%;
+
+            max-width: 1150px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                55px 60px;
+
+            align-items: center;
+        }
+
+
+        /* =====================================================
+           PROJECT ITEM
+        ===================================================== */
+
+        .project {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            border: none;
+
+            background: transparent;
+
+            font-family: inherit;
+
+            color: inherit;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+
+        .project:hover {
+
+            transform:
+                translateY(-8px);
+        }
+
+
+        /* =====================================================
+           PROJECT ICON
+        ===================================================== */
+
+        .project-icon {
+
+            width:
+                clamp(
+                    130px,
+                    14vw,
+                    190px
+                );
+
+            height:
+                clamp(
+                    130px,
+                    14vw,
+                    190px
+                );
+
+            object-fit: contain;
+
+            display: block;
+
+            filter:
+                drop-shadow(
+                    0 7px 8px
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.12
+                    )
+                );
+
+            transition:
+                transform 0.3s ease;
+        }
+
+
+        .project:hover .project-icon {
+
+            transform:
+                rotate(-3deg)
+                scale(1.05);
+        }
+
+
+        /* =====================================================
+           PROJECT NAME
+        ===================================================== */
+
+        .project-name {
+
+            margin-top: 15px;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 20px;
+
+            font-style: italic;
+
+            color: #40382f;
+
+            line-height: 1.2;
+        }
+
+
+        /* =====================================================
+           PROJECT MODAL
+        ===================================================== */
+
+        .project-modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 500;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+
+            background:
+                rgba(
+                    47,
+                    40,
+                    33,
+                    0.38
+                );
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+        }
+
+
+        .project-modal.open {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            pointer-events: auto;
+        }
+
+
+        /* =====================================================
+           PAPER
+
+           paper.png MUST be in the same folder as this HTML.
+        ===================================================== */
+
+        .paper {
+
+            position: relative;
+
+            width:
+                min(
+                    850px,
+                    92vw
+                );
+
+            max-height:
+                90vh;
+
+            min-height: 520px;
+
+            padding:
+                100px 110px 90px;
+
+            background-color:
+                #f5efd8;
+
+            background-image:
+                url("./paper.png");
+
+            background-size:
+                100% 100%;
+
+            background-position:
+                center;
+
+            background-repeat:
+                no-repeat;
+
+            filter:
+                drop-shadow(
+                    0 20px 35px
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.18
+                    )
+                );
+
+            transform:
+                rotate(-1deg)
+                scale(0.94);
+
+            transition:
+                transform 0.35s
+                cubic-bezier(
+                    .2,
+                    .8,
+                    .2,
+                    1
+                );
+
+            overflow-y: auto;
+
+            overflow-x: hidden;
+        }
+
+
+        .project-modal.open .paper {
+
+            transform:
+                rotate(0deg)
+                scale(1);
+        }
+
+
+        /* =====================================================
+           PAPER CONTENT
+        ===================================================== */
+
+        .paper-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 650px;
+
+            margin: 0 auto;
+        }
+
+
+        .paper-title {
+
+            font-family:
+                "Campana",
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(
+                    42px,
+                    6vw,
+                    72px
+                );
+
+            font-weight: normal;
+
+            line-height: 1;
+
+            color: #a66c55;
+
+            margin-bottom: 25px;
+        }
+
+
+        .paper-description {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(
+                    16px,
+                    2vw,
+                    20px
+                );
+
+            line-height: 1.7;
+
+            color: #40382f;
+
+            margin-bottom: 35px;
+
+            white-space: normal;
+        }
+
+
+        /* =====================================================
+           PAPER LINKS
+        ===================================================== */
+
+        .paper-links {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+
+        /*
+           IMPORTANT:
+           Links are hidden by default.
+
+           JavaScript only makes a button visible when
+           that particular project actually has a link.
+        */
+
+        .paper-link {
+
+            display: none;
+
+            padding:
+                11px 20px;
+
+            border:
+                1px solid
+                rgba(
+                    64,
+                    56,
+                    47,
+                    0.5
+                );
+
+            color: #40382f;
+
+            text-decoration: none;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 15px;
+
+            font-style: italic;
+
+            background:
+                rgba(
+                    250,
+                    247,
+                    233,
+                    0.45
+                );
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .paper-link.visible {
+
+            display: inline-block;
+        }
+
+
+        .paper-link:hover {
+
+            background:
+                #a66c55;
+
+            color:
+                #fffaf0;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================================
+           CLOSE BUTTON
+        ===================================================== */
+
+        .close-project {
+
+            position: absolute;
+
+            top: 35px;
+
+            right: 45px;
+
+            z-index: 10;
+
+            border: none;
+
+            background: transparent;
+
+            color: #40382f;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 34px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease;
+        }
+
+
+        .close-project:hover {
+
+            color: #a66c55;
+
+            transform:
+                rotate(90deg);
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .page {
+
+                padding:
+                    55px 25px 100px;
+            }
+
+
+            .page-title {
+
+                margin-bottom: 45px;
+            }
+
+
+            .projects {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap:
+                    35px 20px;
+            }
+
+
+            .project-icon {
+
+                width:
+                    clamp(
+                        100px,
+                        27vw,
+                        145px
+                    );
+
+                height:
+                    clamp(
+                        100px,
+                        27vw,
+                        145px
+                    );
+            }
+
+
+            .project-name {
+
+                font-size: 16px;
+
+                margin-top: 10px;
+            }
+
+
+            /* -----------------------------
+               MOBILE MENU
+            ----------------------------- */
+
+            .side-menu {
+
+                position: fixed;
+
+                left: 0;
+
+                bottom: 0;
+
+                top: auto;
+
+                transform: none;
+
+                width: 100%;
+
+                height: 62px;
+
+                padding:
+                    0 20px;
+
+                background:
+                    rgba(
+                        248,
+                        246,
+                        228,
+                        0.94
+                    );
+
+                backdrop-filter:
+                    blur(8px);
+
+                -webkit-backdrop-filter:
+                    blur(8px);
+
+                flex-direction: row;
+
+                justify-content:
+                    space-around;
+
+                align-items: center;
+
+                gap: 0;
+            }
+
+
+            .menu-link {
+
+                font-size: 16px;
+            }
+
+
+            /* -----------------------------
+               MOBILE PAPER
+            ----------------------------- */
+
+            .project-modal {
+
+                padding: 15px;
+            }
+
+
+            .paper {
+
+                width:
+                    95vw;
+
+                max-height:
+                    90vh;
+
+                min-height:
+                    540px;
+
+                padding:
+                    85px 45px 65px;
+
+                background-size:
+                    100% 100%;
+            }
+
+
+            .paper-content {
+
+                max-width: 100%;
+            }
+
+
+            .paper-title {
+
+                font-size: 42px;
+            }
+
+
+            .paper-description {
+
+                font-size: 16px;
+
+                line-height: 1.6;
+            }
+
+
+            .close-project {
+
+                top: 25px;
+
+                right: 30px;
+
+                font-size: 28px;
+            }
+
+        }
+
+
+        /* =====================================================
+           SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 400px) {
+
+            .projects {
+
+                gap:
+                    30px 12px;
+            }
+
+
+            .project-icon {
+
+                width: 105px;
+
+                height: 105px;
+            }
+
+
+            .project-name {
+
+                font-size: 14px;
+            }
+
+
+            .paper {
+
+                padding:
+                    75px 32px 55px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SPIRAL BACKGROUND
+    ===================================================== -->
+
+    <div class="spiral-background"></div>
+
+
+    <!-- =====================================================
+         SIDE MENU
+    ===================================================== -->
+
+    <nav class="side-menu">
+
+        <a
+            href="index.html"
+            class="menu-link"
+        >
+            Home
+        </a>
+
+
+        <a
+            href="CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="menu-link"
+        >
+            CV
+        </a>
+
+
+        <button
+            type="button"
+            class="menu-link"
+            id="contactButton"
+        >
+            Contact me
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         MAIN PAGE
+    ===================================================== -->
+
+    <main class="page">
+
+
+        <header class="page-title">
+
+            <h1>
+                Projects
+            </h1>
+
+            <p>
+                what I've been up to
+            </p>
+
+        </header>
+
+
+        <!-- =================================================
+             PROJECT GRID
+        ================================================== -->
+
+        <section class="projects">
+
+
+            <!-- PROJECT 1 -->
+
+            <button
+                type="button"
+                class="project"
+                data-project="project1"
+            >
+
+                <img
+                    src="ic1.png"
+                    class="project-icon"
+                    alt="Confidence Updating Dynamics"
+                >
+
+                <span class="project-name">
+                    2DSD Model - Confidence Updating Dynamics in Schizophrenia Spectrum Disorder
+                </span>
+
+            </button>
+
+
+            <!-- PROJECT 2 -->
+
+            <button
+                type="button"
+                class="project"
+                data-project="project2"
+            >
+
+                <img
+                    src="ic2.png"
+                    class="project-icon"
+                    alt="MRI-Based Detection of Alzheimer's Disease"
+                >
+
+                <span class="project-name">
+                    CNN- MRI-Based Detection of Alzheimer's Disease
+                </span>
+
+            </button>
+
+
+            <!-- PROJECT 3 -->
+
+            <button
+                type="button"
+                class="project"
+                data-project="project3"
+            >
+
+                <img
+                    src="ic3.png"
+                    class="project-icon"
+                    alt="Graph Echo State Network"
+                >
+
+                <span class="project-name">
+                    Graph Echo State Network
+                </span>
+
+            </button>
+
+
+            <!-- PROJECT 4 -->
+
+            <button
+                type="button"
+                class="project"
+                data-project="project4"
+            >
+
+                <img
+                    src="ic4.png"
+                    class="project-icon"
+                    alt="CASE-BERT"
+                >
+
+                <span class="project-name">
+                    CASE-BERT
+                </span>
+
+            </button>
+
+
+            <!-- PROJECT 5 -->
+
+            <button
+                type="button"
+                class="project"
+                data-project="project5"
+            >
+
+                <img
+                    src="ic5.png"
+                    class="project-icon"
+                    alt="Representational Hierarchy in a Trained MLP"
+                >
+
+                <span class="project-name">
+                    Representational Hierarchy in trained MLP
+                </span>
+
+            </button>
+
+
+            <!-- PROJECT 6 -->
+
+            <button
+                type="button"
+                class="project"
+                data-project="project6"
+            >
+
+                <img
+                    src="ic6.png"
+                    class="project-icon"
+                    alt="Izhikevich Neural Spiking Model"
+                >
+
+                <span class="project-name">
+                    Izhikevich Neural Spiking
+                </span>
+
+            </button>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PROJECT MODAL
+    ===================================================== -->
+
+    <div
+        class="project-modal"
+        id="projectModal"
+        aria-hidden="true"
+    >
+
+        <article
+            class="paper"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="paperTitle"
+        >
+
+            <button
+                type="button"
+                class="close-project"
+                id="closeProject"
+                aria-label="Close project"
+            >
+                ×
+            </button>
+
+
+            <div class="paper-content">
+
+                <h2
+                    class="paper-title"
+                    id="paperTitle"
+                >
+                    Project
+                </h2>
+
+
+                <p
+                    class="paper-description"
+                    id="paperDescription"
+                >
+                </p>
+
+
+                <div class="paper-links">
+
+                    <a
+                        href="#"
+                        class="paper-link"
+                        id="githubLink"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View GitHub ↗
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="paper-link"
+                        id="pdfLink"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Read paper ↗
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="paper-link"
+                        id="webLink"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View project ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTACT MODAL
+    ===================================================== -->
+
+    <div
+        class="project-modal"
+        id="contactModal"
+        aria-hidden="true"
+    >
+
+        <article
+            class="paper"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contactTitle"
+        >
+
+            <button
+                type="button"
+                class="close-project"
+                id="closeContact"
+                aria-label="Close contact"
+            >
+                ×
+            </button>
+
+
+            <div class="paper-content">
+
+                <h2
+                    class="paper-title"
+                    id="contactTitle"
+                >
+                    Contact me
+                </h2>
+
+
+                <p class="paper-description">
+
+                    If you'd like to get in touch,
+                    I'd love to hear from you.
+
+                </p>
+
+
+                <div class="paper-links">
+
+                    <a
+                        href="mailto:YOUR-EMAIL@example.com"
+                        class="paper-link visible"
+                    >
+                        Email ↗
+                    </a>
+
+
+                    <a
+                        href="https://github.com/YOUR-USERNAME"
+                        class="paper-link visible"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        GitHub ↗
+                    </a>
+
+
+                    <a
+                        href="https://www.linkedin.com/in/YOUR-USERNAME/"
+                        class="paper-link visible"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        LinkedIn ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           PROJECT INFORMATION
+
+           YOUR ORIGINAL DESCRIPTIONS AND LINKS ARE PRESERVED.
+           
+           The only change is that the JS below understands:
+           
+           github
+           pdf
+           weblink
+           readmore
+           
+           so projects don't need to have all three types.
+        ===================================================== */
+
+
+        const projects = {
+
+
+            /* -------------------------------------------------
+               PROJECT 1
+            ------------------------------------------------- */
+
+            project1: {
+
+                title:
+                    "Confidence Updating Dynamics in Schizophrenia Spectrum Disorder",
+
+                description:
+                    "A two-stage computational analysis of trial-level confidence in a visual motion discrimination task, comparing healthy controls (HC) and individuals with schizophrenia spectrum disorder (SSD).Based on the MSc dissertation -Beyond Metacognitive Accuracy: A Computational Account of Confidence Updating Dynamics in Schizophrenia (MSc Cognitive and Computational Neuroscience, University of Sheffield, 2026). Author: Aarushi Basu. Supervisors: Hazem Toutounji, Alekhya Mandali",
+
+                github:
+                    "https://github.com/aarushi-056/Beyond-Metacognitive-Accuracy",
+
+                pdf:
+                    "Thesis final.pdf"
+
+            },
+
+
+            /* -------------------------------------------------
+               PROJECT 2
+            ------------------------------------------------- */
+
+            project2: {
+
+                title:
+                    "MRI-Based Detection of Alzheimer's Disease Using Transfer Learning in CNNs",
+
+                description:
+                    "This project presents a CNN-based architecture for classifying Alzheimer's disease (AD) from brain MRI scans using transfer learning. The core motivation is the limited availability of Alzheimer's imaging data — transfer learning from pathologically similar diseases (dementia, MCI) is used to improve classification performance even on small datasets.The model achieves 95% accuracy in detecting AD from normal control, outperforming clinical visual rating scales (~82% diagnostic performance.)",
+
+                github:
+                    "https://github.com/aarushi-056/AlzCNN-TL"
+
+            },
+
+
+            /* -------------------------------------------------
+               PROJECT 3
+            ------------------------------------------------- */
+
+            project3: {
+
+                title:
+                    "Graph Echo State Network for Gamma-Band LFP Modelling ",
+
+                description:
+                    "Evidence suggests that the brain encodes information across a continuous, high-dimensional embedding space within neural activity. We examine how these neural perspectives appear within a high-dimensional plane where they can be compared to analyze how their information interacts.This approach is analogous to having multiple camera ensembles observe the same object: each camera must align with others to achieve optimal view while maintaining a common understanding of the object's spatial properties to interact effectively. In our analogy, cameras represent cortical populations, and the object represents state space.To model these dynamics, we propose a bespoke Graph-Echo State Network variant with multiple oscillatory components and individual components for each cortical population. This approach allows for modeling the perspectives of individual populations within a common state space, enabling the modeling of interactions between them.",
+
+                weblink:
+                    "https://www.abstractsonline.com/pp8/#!/21171/presentation/29625"
+
+            },
+
+
+            /* -------------------------------------------------
+               PROJECT 4
+            ------------------------------------------------- */
+
+            project4: {
+
+                title:
+                    "CASE: Efficient Curricular Data Pre-training for Building Assistive Psychology Expert Models",
+
+                description:
+                    "The limited availability of psychologists necessitates efficient identification of individuals requiring urgent mental healthcare. This study explores the use of Natural Language Processing (NLP) pipelines to analyze text data from online mental health forums used for consultations. By analyzing forum posts, these pipelines can flag users who may require immediate professional attention. A crucial challenge in this domain is data privacy and scarcity. To address this, we propose utilizing readily available curricular texts used in institutes specializing in mental health for pre-training the NLP pipelines. This helps us mimic the training process of a psychologist. Our work presents CASE-BERT that flags potential mental health disorders based on forum text. CASE-BERT demonstrates superior performance compared to existing methods, achieving an f1 score of 0.91 for Depression and 0.88 for Anxiety, two of the most commonly reported mental health disorders. Our code and data are publicly available.",
+
+                readmore:
+                    "https://aclanthology.org/2024.findings-emnlp.925/"
+
+            },
+
+
+            /* -------------------------------------------------
+               PROJECT 5
+            ------------------------------------------------- */
+
+            project5: {
+
+                title:
+                    "Representational Hierarchy in a Trained MLP Diverges from Visual Cortex Organisation",
+
+                description:
+                    "This project asks a question about artificial neural networks: when a Multi-Layer Perceptron (MLP) is trained on a visual classification task, does it develop an analogous representational hierarchy?",
+
+                github:
+                    "https://github.com/aarushi-056/Representational-Hierarchy-in-a-Trained-MLP-Diverges-from-Visual-Cortex-Organisation"
+
+            },
+
+
+            /* -------------------------------------------------
+               PROJECT 6
+            ------------------------------------------------- */
+
+            project6: {
+
+                title:
+                    "Izhikevich Neural spiking model simulation of neuon population.",
+
+                description:
+                    "In this project we explore the spiking activity of 100 model neurons that function according to the parameters laid out by Izhikevich approximating cortical excitatory neurons.",
+
+                github:
+                    "https://github.com/aarushi-056/izn_neural_spiking"
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const projectButtons =
+            document.querySelectorAll(".project");
+
+
+        const projectModal =
+            document.getElementById("projectModal");
+
+
+        const paperTitle =
+            document.getElementById("paperTitle");
+
+
+        const paperDescription =
+            document.getElementById("paperDescription");
+
+
+        const githubLink =
+            document.getElementById("githubLink");
+
+
+        const pdfLink =
+            document.getElementById("pdfLink");
+
+
+        const webLink =
+            document.getElementById("webLink");
+
+
+        const closeProject =
+            document.getElementById("closeProject");
+
+
+        const contactButton =
+            document.getElementById("contactButton");
+
+
+        const contactModal =
+            document.getElementById("contactModal");
+
+
+        const closeContact =
+            document.getElementById("closeContact");
+
+
+
+        /* =====================================================
+           LINK VALIDATION
+        ===================================================== */
+
+        function hasLink(value) {
+
+            return (
+                typeof value === "string" &&
+                value.trim() !== "" &&
+                value.trim() !== "#"
+            );
+
+        }
+
+
+
+        /* =====================================================
+           SET OPTIONAL LINK
+           
+           If a project has the link:
+               show it.
+           
+           If it doesn't:
+               hide it completely.
+        ===================================================== */
+
+        function setOptionalLink(
+            element,
+            url
+        ) {
+
+            element.classList.remove(
+                "visible"
+            );
+
+            element.removeAttribute(
+                "href"
+            );
+
+
+            if (hasLink(url)) {
+
+                element.href =
+                    url.trim();
+
+                element.classList.add(
+                    "visible"
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           OPEN PROJECT
+        ===================================================== */
+
+        projectButtons.forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const projectID =
+                            button.dataset.project;
+
+
+                        const project =
+                            projects[projectID];
+
+
+                        if (!project) {
+
+                            console.error(
+                                "Project not found:",
+                                projectID
+                            );
+
+                            return;
+                        }
+
+
+                        /* -----------------------------
+                           TITLE
+                        ----------------------------- */
+
+                        paperTitle.textContent =
+                            project.title || "Project";
+
+
+                        /* -----------------------------
+                           DESCRIPTION
+                        ----------------------------- */
+
+                        paperDescription.textContent =
+                            project.description || "";
+
+
+                        /* -----------------------------
+                           LINKS
+                        ----------------------------- */
+
+                        setOptionalLink(
+                            githubLink,
+                            project.github
+                        );
+
+
+                        setOptionalLink(
+                            pdfLink,
+                            project.pdf
+                        );
+
+
+                        /*
+                         * Project 3 uses "weblink".
+                         * Project 4 uses "readmore".
+                         *
+                         * Both are supported.
+                         */
+
+                        setOptionalLink(
+                            webLink,
+                            project.weblink ||
+                            project.readmore
+                        );
+
+
+                        /* -----------------------------
+                           OPEN MODAL
+                        ----------------------------- */
+
+                        projectModal.classList.add(
+                            "open"
+                        );
+
+                        projectModal.setAttribute(
+                            "aria-hidden",
+                            "false"
+                        );
+
+
+                        document.body.style.overflow =
+                            "hidden";
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CLOSE PROJECT MODAL
+        ===================================================== */
+
+        function closeProjectModal() {
+
+            projectModal.classList.remove(
+                "open"
+            );
+
+            projectModal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            if (
+                !contactModal.classList.contains(
+                    "open"
+                )
+            ) {
+
+                document.body.style.overflow =
+                    "";
+
+            }
+
+        }
+
+
+        closeProject.addEventListener(
+            "click",
+            closeProjectModal
+        );
+
+
+
+        /* =====================================================
+           CLICK OUTSIDE PROJECT PAPER
+        ===================================================== */
+
+        projectModal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    projectModal
+                ) {
+
+                    closeProjectModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           OPEN CONTACT
+        ===================================================== */
+
+        contactButton.addEventListener(
+            "click",
+            () => {
+
+                contactModal.classList.add(
+                    "open"
+                );
+
+                contactModal.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CLOSE CONTACT
+        ===================================================== */
+
+        function closeContactModal() {
+
+            contactModal.classList.remove(
+                "open"
+            );
+
+            contactModal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            if (
+                !projectModal.classList.contains(
+                    "open"
+                )
+            ) {
+
+                document.body.style.overflow =
+                    "";
+
+            }
+
+        }
+
+
+        closeContact.addEventListener(
+            "click",
+            closeContactModal
+        );
+
+
+
+        /* =====================================================
+           CLICK OUTSIDE CONTACT PAPER
+        ===================================================== */
+
+        contactModal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    contactModal
+                ) {
+
+                    closeContactModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           ESCAPE KEY
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key !== "Escape"
+                ) {
+                    return;
+                }
+
+
+                if (
+                    projectModal.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    closeProjectModal();
+
+                }
+
+
+                if (
+                    contactModal.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    closeContactModal();
+
+                }
+
+            }
+        );
+
+
+
+    </script>
+
+
+</body>
+
+</html>

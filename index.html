@@ -1,12 +1,1580 @@
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Aarushi Basu</title>
-   </head>
-   <body>
-     <h1>Aarushi Basu</h1>
-     <p>Site under construction.</p>
-   </body>
-   </html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Aarushi Basu</title>
+
+
+    <style>
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html,
+        body {
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+        }
+
+
+        body {
+
+            background: #f8f3e8;
+
+            font-family:
+                Georgia,
+                serif;
+
+            color: #40382f;
+        }
+
+
+
+        /* =====================================================
+           CAMPANA FONT
+        ===================================================== */
+
+        @font-face {
+
+            font-family: "Campana";
+
+            src:
+                url("campana.otf")
+                format("opentype");
+
+            font-weight: normal;
+
+            font-style: normal;
+
+            font-display: swap;
+        }
+
+
+
+        /* =====================================================
+           MAIN SCENE
+        ===================================================== */
+
+        .scene {
+
+            position: relative;
+
+            width: 100vw;
+
+            height: 100vh;
+
+            overflow: hidden;
+        }
+
+
+
+        /* =====================================================
+           WATERCOLOUR GIRL
+        ===================================================== */
+
+        .girl {
+
+            position: absolute;
+
+            /*
+               The image remains anchored to the
+               centre of the viewport.
+            */
+
+            width:
+                min(850px, 75vw);
+
+            height: auto;
+
+            left: 50%;
+
+            bottom: -40px;
+
+            transform:
+                translateX(-50%);
+
+            user-select: none;
+
+            pointer-events: none;
+
+            z-index: 2;
+        }
+
+
+
+        /* =====================================================
+           EYELID
+        =====================================================
+
+           IMPORTANT:
+
+           The eyelid is positioned relative to
+           the GIRL IMAGE rather than the browser.
+
+           This keeps it attached to the face when
+           the illustration changes size on mobile.
+        ===================================================== */
+
+        .girl-container {
+
+            position: absolute;
+
+            width:
+                min(850px, 75vw);
+
+            height: auto;
+
+            left: 50%;
+
+            bottom: -40px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 2;
+        }
+
+
+        .girl-container .girl {
+
+            position: relative;
+
+            width: 100%;
+
+            left: auto;
+
+            bottom: auto;
+
+            transform: none;
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           EYELID IMAGE
+        ===================================================== */
+
+        .eyelid {
+
+            position: absolute;
+
+            /*
+               CHANGE THESE TWO VALUES if the eyelid
+               needs moving on the illustration.
+
+               They are percentages of the PNG.
+            */
+
+            left: 16%;
+
+            top: 40%;
+
+
+            /*
+               Change this to make the eyelid
+               bigger or smaller.
+            */
+
+            width: 13%;
+
+            height: auto;
+
+
+            z-index: 5;
+
+            pointer-events: none;
+
+            opacity: 0;
+
+            transform:
+                scaleY(0.15);
+
+            transform-origin:
+                center center;
+        }
+
+
+        /* =====================================================
+           BLINK ANIMATION
+        ===================================================== */
+
+        .eyelid.blink {
+
+            animation:
+                realisticBlink
+                0.24s
+                ease-in-out
+                forwards;
+        }
+
+
+        @keyframes realisticBlink {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    scaleY(0.15);
+            }
+
+
+            20% {
+
+                opacity: 0.65;
+
+                transform:
+                    scaleY(0.55);
+            }
+
+
+            45% {
+
+                opacity: 1;
+
+                transform:
+                    scaleY(1);
+            }
+
+
+            65% {
+
+                opacity: 1;
+
+                transform:
+                    scaleY(1);
+            }
+
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    scaleY(0.15);
+            }
+
+        }
+
+
+
+        /* =====================================================
+           BUTTERFLY
+        =====================================================
+
+           IMPORTANT:
+
+           This butterfly is the extracted butterfly
+           image itself.
+
+           It is NOT recreated using CSS.
+
+           It is allowed to travel around the screen,
+           while the butterfly originally painted
+           inside the brain remains part of the PNG.
+        ===================================================== */
+
+        .butterfly {
+
+            position: absolute;
+
+            width:
+                clamp(90px, 16vw, 160px);
+
+            height: auto;
+
+            left: 30%;
+
+            top: 30%;
+
+            z-index: 20;
+
+            pointer-events: none;
+
+            animation:
+                butterflyFlight
+                18s
+                ease-in-out
+                infinite;
+        }
+
+
+        .butterfly img {
+
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            /*
+               The entire butterfly moves slightly
+               while the wings flap separately.
+            */
+
+            transform-origin:
+                center center;
+
+            animation:
+                butterflyFlap
+                0.28s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+
+
+        /* =====================================================
+           BUTTERFLY FLIGHT
+        ===================================================== */
+
+        @keyframes butterflyFlight {
+
+            0% {
+
+                left: 29%;
+
+                top: 28%;
+
+                transform:
+                    rotate(-10deg);
+            }
+
+
+            12% {
+
+                left: 48%;
+
+                top: 18%;
+
+                transform:
+                    rotate(8deg);
+            }
+
+
+            25% {
+
+                left: 72%;
+
+                top: 24%;
+
+                transform:
+                    rotate(18deg);
+            }
+
+
+            40% {
+
+                left: 82%;
+
+                top: 48%;
+
+                transform:
+                    rotate(35deg);
+            }
+
+
+            55% {
+
+                left: 67%;
+
+                top: 72%;
+
+                transform:
+                    rotate(15deg);
+            }
+
+
+            70% {
+
+                left: 40%;
+
+                top: 65%;
+
+                transform:
+                    rotate(-15deg);
+            }
+
+
+            84% {
+
+                left: 16%;
+
+                top: 48%;
+
+                transform:
+                    rotate(-28deg);
+            }
+
+
+            100% {
+
+                left: 29%;
+
+                top: 28%;
+
+                transform:
+                    rotate(-10deg);
+            }
+
+        }
+
+
+
+        /* =====================================================
+           BUTTERFLY WING FLAPPING
+        ===================================================== */
+
+        @keyframes butterflyFlap {
+
+            0% {
+
+                transform:
+                    scaleY(0.82)
+                    rotate(-2deg);
+            }
+
+
+            50% {
+
+                transform:
+                    scaleY(1)
+                    rotate(0deg);
+            }
+
+
+            100% {
+
+                transform:
+                    scaleY(0.82)
+                    rotate(2deg);
+            }
+
+        }
+
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
+
+        .title {
+
+            position: absolute;
+
+            z-index: 30;
+
+            top: 8%;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width:
+                min(900px, 90vw);
+
+            text-align: center;
+
+            pointer-events: auto;
+        }
+
+
+
+        /* =====================================================
+           WELCOME TEXT
+        ===================================================== */
+
+        .welcome {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(
+                    24px,
+                    3vw,
+                    42px
+                );
+
+            font-weight: normal;
+
+            color: #40382f;
+
+            line-height: 1.1;
+
+            margin-bottom: 5px;
+        }
+
+
+
+        /* =====================================================
+           AARUSHI BASU
+        ===================================================== */
+
+        .name {
+
+            display: inline-block;
+
+            font-family:
+                "Campana",
+                campana,
+                serif;
+
+            font-size:
+                clamp(
+                    60px,
+                    8vw,
+                    120px
+                );
+
+            font-weight: normal;
+
+            font-style: normal;
+
+            line-height: 0.95;
+
+            color: #b87954;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        .name:hover {
+
+            opacity: 0.78;
+
+            transform:
+                scale(1.02);
+        }
+
+
+
+        /* =====================================================
+           SIDE MENU
+        ===================================================== */
+
+        .side-menu {
+
+            position: fixed;
+
+            left: 28px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            z-index: 100;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 32px;
+        }
+
+
+        .menu-link {
+
+            border: none;
+
+            background: transparent;
+
+            color: #40382f;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 18px;
+
+            font-style: italic;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            padding: 0;
+
+            transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .menu-link:hover {
+
+            color: #a66c55;
+
+            transform:
+                translateX(5px);
+        }
+
+
+
+        /* =====================================================
+           CONTACT MODAL
+        ===================================================== */
+
+        .contact-modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 500;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            background:
+                rgba(
+                    47,
+                    40,
+                    33,
+                    0.35
+                );
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+        }
+
+
+        .contact-modal.open {
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+
+        /* =====================================================
+           CONTACT PAPER
+        ===================================================== */
+
+        .contact-paper {
+
+            position: relative;
+
+            width:
+                min(650px, 92vw);
+
+            min-height: 400px;
+
+            padding:
+                80px 75px;
+
+            background:
+                #faf7e9;
+
+            border:
+                1px solid
+                rgba(
+                    80,
+                    65,
+                    50,
+                    0.2
+                );
+
+            box-shadow:
+                0 25px 70px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.2
+                );
+
+            transform:
+                rotate(-1deg)
+                scale(0.96);
+
+            transition:
+                transform 0.35s
+                cubic-bezier(
+                    .2,
+                    .8,
+                    .2,
+                    1
+                );
+        }
+
+
+        .contact-modal.open
+        .contact-paper {
+
+            transform:
+                rotate(0deg)
+                scale(1);
+        }
+
+
+
+        /* =====================================================
+           CONTACT TITLE
+        ===================================================== */
+
+        .contact-title {
+
+            color: #a66c55;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(
+                    38px,
+                    5vw,
+                    55px
+                );
+
+            font-weight: normal;
+
+            font-style: italic;
+
+            margin-bottom: 30px;
+        }
+
+
+
+        /* =====================================================
+           CONTACT INTRO
+        ===================================================== */
+
+        .contact-intro {
+
+            color: #40382f;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            margin-bottom: 30px;
+        }
+
+
+
+        /* =====================================================
+           CONTACT DETAILS
+        ===================================================== */
+
+        .contact-details {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .contact-details a {
+
+            width: fit-content;
+
+            color: #40382f;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 17px;
+
+            text-decoration: none;
+
+            border-bottom:
+                1px solid
+                rgba(
+                    64,
+                    56,
+                    47,
+                    0.3
+                );
+
+            padding-bottom: 2px;
+
+            transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .contact-details a:hover {
+
+            color: #a66c55;
+
+            transform:
+                translateX(4px);
+        }
+
+
+
+        /* =====================================================
+           CLOSE CONTACT
+        ===================================================== */
+
+        .close-contact {
+
+            position: absolute;
+
+            top: 18px;
+
+            right: 22px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #40382f;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 30px;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease;
+        }
+
+
+        .close-contact:hover {
+
+            color: #a66c55;
+
+            transform:
+                rotate(90deg);
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+
+            /* -------------------------------------------------
+               SCENE
+            ------------------------------------------------- */
+
+            .scene {
+
+                height: 100vh;
+
+                min-height: 600px;
+            }
+
+
+
+            /* -------------------------------------------------
+               GIRL
+
+               Keep the girl anchored to the same
+               proportions on mobile.
+            ------------------------------------------------- */
+
+            .girl-container {
+
+                width:
+                    min(
+                        900px,
+                        125vw
+                    );
+
+                bottom:
+                    25px;
+            }
+
+
+
+            /* -------------------------------------------------
+               TITLE
+            ------------------------------------------------- */
+
+            .title {
+
+                top: 7%;
+
+                width: 94vw;
+            }
+
+
+            .welcome {
+
+                font-size:
+                    clamp(
+                        21px,
+                        5.5vw,
+                        30px
+                    );
+
+                margin-bottom: 7px;
+            }
+
+
+            .name {
+
+                font-size:
+                    clamp(
+                        48px,
+                        14vw,
+                        82px
+                    );
+            }
+
+
+
+            /* -------------------------------------------------
+               BUTTERFLY
+            ------------------------------------------------- */
+
+            .butterfly {
+
+                width:
+                    clamp(
+                        48px,
+                        12vw,
+                        75px
+                    );
+            }
+
+
+
+            /* -------------------------------------------------
+               SIDE MENU
+
+               Becomes bottom navigation.
+            ------------------------------------------------- */
+
+            .side-menu {
+
+                position: fixed;
+
+                left: 0;
+
+                bottom: 0;
+
+                top: auto;
+
+                transform: none;
+
+                width: 100%;
+
+                height: 62px;
+
+                padding:
+                    0 20px;
+
+                background:
+                    rgba(
+                        248,
+                        246,
+                        228,
+                        0.92
+                    );
+
+                backdrop-filter:
+                    blur(8px);
+
+                -webkit-backdrop-filter:
+                    blur(8px);
+
+                flex-direction: row;
+
+                justify-content:
+                    space-around;
+
+                align-items: center;
+
+                gap: 0;
+            }
+
+
+            .menu-link {
+
+                font-size: 16px;
+
+                font-style: italic;
+            }
+
+
+            .menu-link:hover {
+
+                transform:
+                    translateY(-2px);
+            }
+
+
+
+            /* -------------------------------------------------
+               CONTACT
+            ------------------------------------------------- */
+
+            .contact-paper {
+
+                width: 92vw;
+
+                min-height: 400px;
+
+                padding:
+                    65px 35px;
+            }
+
+
+            .contact-title {
+
+                font-size: 40px;
+            }
+
+
+            .contact-intro {
+
+                font-size: 16px;
+            }
+
+
+            .contact-details a {
+
+                font-size: 15px;
+            }
+
+        }
+
+
+
+        /* =====================================================
+           VERY SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 400px) {
+
+            .welcome {
+
+                font-size: 20px;
+            }
+
+
+            .name {
+
+                font-size: 46px;
+            }
+
+
+            .girl-container {
+
+                width:
+                    130vw;
+
+                bottom:
+                    35px;
+            }
+
+
+            .side-menu {
+
+                height: 58px;
+            }
+
+
+            .menu-link {
+
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =====================================================
+         MAIN SCENE
+    ===================================================== -->
+
+    <main class="scene">
+
+
+
+        <!-- =================================================
+             GIRL + EYELID CONTAINER
+
+             The eyelid lives INSIDE this container.
+
+             This is important because its position is
+             relative to the PNG rather than the browser.
+        ================================================== -->
+
+        <div class="girl-container">
+
+
+            <!-- Main watercolour illustration -->
+
+            <img
+                src="web_clean.jpg"
+                class="girl"
+                alt="Watercolour illustration"
+            >
+
+
+            <!-- Animated eyelid -->
+
+            <img
+                src="eyelid.png"
+                class="eyelid"
+                id="eyelid"
+                alt=""
+            >
+
+        </div>
+
+
+
+        <!-- =================================================
+             TITLE
+        ================================================== -->
+
+        <div class="title">
+
+
+            <div class="welcome">
+                welcome to the brain of
+            </div>
+
+
+            <!--
+
+                Clicking the name takes the user
+                to the projects page.
+
+            -->
+
+            <a
+                href="projects.html"
+                class="name"
+            >
+                Aarushi Basu
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             FLYING BUTTERFLY
+        ================================================== -->
+
+        <div class="butterfly">
+
+            <img
+                src="buttfly.png"
+                alt=""
+            >
+
+        </div>
+
+
+
+        <!-- =================================================
+             SIDE MENU
+        ================================================= -->
+
+        <nav class="side-menu">
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="menu-link"
+            >
+                Home
+            </a>
+
+
+
+            <!-- CV -->
+
+            <a
+                href="CV.pdf"
+                class="menu-link"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                CV
+            </a>
+
+
+
+            <!-- CONTACT -->
+
+            <button
+                class="menu-link"
+                id="contactButton"
+            >
+                Contact me
+            </button>
+
+
+        </nav>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         CONTACT MODAL
+    ===================================================== -->
+
+    <div
+        class="contact-modal"
+        id="contactModal"
+    >
+
+
+        <div class="contact-paper">
+
+
+            <!-- CLOSE -->
+
+            <button
+                class="close-contact"
+                id="closeContact"
+                aria-label="Close contact"
+            >
+                ×
+            </button>
+
+
+
+            <!-- TITLE -->
+
+            <h2 class="contact-title">
+                Contact me
+            </h2>
+
+
+
+            <!-- INTRO -->
+
+            <p class="contact-intro">
+
+                If you'd like to get in touch,
+                I'd love to hear from you.
+
+            </p>
+
+
+
+            <!-- =================================================
+                 CONTACT DETAILS
+
+                 EDIT THESE THREE LINKS.
+            ================================================== -->
+
+            <div class="contact-details">
+
+
+                <!-- EMAIL -->
+
+                <a
+                    href="mailto:aarushi.basu05@gmail.com"
+                >
+                    aarushi.basu05@gmail.com
+                </a>
+
+
+                <!-- GITHUB -->
+
+                <a
+                    href="https://github.com/aarushibasu-056"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub ↗
+                </a>
+
+
+                <!-- LINKEDIN -->
+
+                <a
+                    href="https://www.linkedin.com/in/aarushibasu1/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    LinkedIn ↗
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           RANDOM BLINKING
+        =====================================================
+
+           The eyelid is positioned relative to the
+           girl-container, so resizing the illustration
+           does not move the eyelid away from the face.
+        ===================================================== */
+
+
+        const eyelid =
+            document.getElementById(
+                "eyelid"
+            );
+
+
+        function blink() {
+
+
+            /*
+               Remove the previous animation.
+            */
+
+            eyelid.classList.remove(
+                "blink"
+            );
+
+
+            /*
+               Force the browser to restart
+               the animation.
+            */
+
+            void eyelid.offsetWidth;
+
+
+            /*
+               Start blink.
+            */
+
+            eyelid.classList.add(
+                "blink"
+            );
+
+        }
+
+
+        function randomBlink() {
+
+
+            blink();
+
+
+            /*
+               Next blink occurs randomly
+               between 3 and 8 seconds.
+            */
+
+            const delay =
+                3000 +
+                Math.random() * 5000;
+
+
+            setTimeout(
+                randomBlink,
+                delay
+            );
+
+        }
+
+
+        /*
+           First blink after 3 seconds.
+        */
+
+        setTimeout(
+            randomBlink,
+            3000
+        );
+
+
+
+        /* =====================================================
+           CONTACT MODAL
+        ===================================================== */
+
+
+        const contactButton =
+            document.getElementById(
+                "contactButton"
+            );
+
+
+        const contactModal =
+            document.getElementById(
+                "contactModal"
+            );
+
+
+        const closeContact =
+            document.getElementById(
+                "closeContact"
+            );
+
+
+
+        /* -----------------------------------------------------
+           OPEN CONTACT
+        ----------------------------------------------------- */
+
+        contactButton.addEventListener(
+            "click",
+            () => {
+
+                contactModal.classList.add(
+                    "open"
+                );
+
+            }
+        );
+
+
+
+        /* -----------------------------------------------------
+           CLOSE CONTACT
+        ----------------------------------------------------- */
+
+        closeContact.addEventListener(
+            "click",
+            () => {
+
+                contactModal.classList.remove(
+                    "open"
+                );
+
+            }
+        );
+
+
+
+        /* -----------------------------------------------------
+           CLICK OUTSIDE PAPER
+        ----------------------------------------------------- */
+
+        contactModal.addEventListener(
+            "click",
+            event => {
+
+
+                if (
+                    event.target === contactModal
+                ) {
+
+                    contactModal.classList.remove(
+                        "open"
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* -----------------------------------------------------
+           ESCAPE KEY
+        ----------------------------------------------------- */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    contactModal.classList.remove(
+                        "open"
+                    );
+
+                }
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
